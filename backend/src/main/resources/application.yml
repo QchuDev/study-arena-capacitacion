@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: training
+
+jwt:
+  secret: R4xeNO6r1jq05OaFX3ax17b6pEmunt2MnMogRaUj94s=
+  expiration-ms: 86400000

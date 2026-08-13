@@ -20,3 +20,6 @@ con soporte de variables de entorno para no hardcodear secretos.
 
 ## Resultado esperado
 La app arranca conectándose a PostgreSQL y leyendo config de variables de entorno.
+
+## Aprendido
+- ...
