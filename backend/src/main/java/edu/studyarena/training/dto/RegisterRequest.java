@@ -1,7 +1,7 @@
 package edu.studyarena.training.dto;
 
 
-record RegisterRequest(
+public record RegisterRequest(
   String name,
   String email,
   String password

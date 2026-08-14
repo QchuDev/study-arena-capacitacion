@@ -1,6 +1,6 @@
 package edu.studyarena.training.dto;
 
-record LoginRequest(
+public record LoginRequest(
   String email,
   String password
 ) {}
