@@ -13,12 +13,12 @@ Exponer los endpoints HTTP de la aplicación.
 - `POST /api/meetings` → crear reunión (protegido)
 
 ## Tareas
-- [ ] Crear `AuthController` (register, login)
-- [ ] Crear `MeetingService` (crear, listar, buscar por id)
-- [ ] Crear DTOs de Meeting (CreateMeetingRequest, MeetingResponse)
-- [ ] Crear `MeetingController` (CRUD endpoints)
-- [ ] Generar jitsiRoomId (UUID URL-safe) al crear reunión
-- [ ] Validar DTOs con `@Valid` + annotations de Bean Validation
+- [x] Crear `AuthController` (register, login)
+- [x] Crear `MeetingService` (crear, listar, buscar por id)
+- [x] Crear DTOs de Meeting (CreateMeetingRequest, MeetingResponse)
+- [x] Crear `MeetingController` (CRUD endpoints)
+- [x] Generar jitsiRoomId (UUID URL-safe) al crear reunión
+- [x] Validar DTOs con `@Valid` + annotations de Bean Validation
 
 ## Dependencias
 - 001 - Auth Service
@@ -26,3 +26,7 @@ Exponer los endpoints HTTP de la aplicación.
 
 ## Resultado esperado
 API funcional que se puede testear con Postman/Insomnia.
+
+## Aprendido
+- @PostMapping y @GetMapping del Java Spring Boot, son los tags para aquellos metodos que 
+responden a las requests http.

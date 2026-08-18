@@ -29,6 +29,10 @@ public class AuthService {
   }
 
   public AuthResponse register(RegisterRequest regReq) {
+
+    //TODO:
+    // validacion por existencia o validez de las credenciales.
+    
     String hashPassword = passwordEncoder.encode(regReq.password());
     User user = new User(regReq.name(), regReq.email(), hashPassword);
     userRepository.save(user);
