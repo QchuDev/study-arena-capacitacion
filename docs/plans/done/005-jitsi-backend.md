@@ -7,13 +7,13 @@ Implementar el servicio que genera tokens JWT firmados con RSA para acceder
 a salas de Jitsi as a Service (JaaS).
 
 ## Tareas
-- [ ] Agregar dependencia `nimbus-jose-jwt` al build.gradle
-- [ ] Crear `VideoConferenceAccessService` (interfaz + implementación)
-- [ ] Crear DTO `VideoConferenceAccess` (domain, roomName, token, expiresAt)
-- [ ] Implementar firma JWT con RSA (clave privada de JaaS)
-- [ ] Configurar propiedades JaaS en application.yml (app-id, kid, ruta clave privada)
-- [ ] Crear endpoint `POST /api/meetings/{meetingId}/access`
-- [ ] Validar que el usuario autenticado puede acceder a la reunión
+- [x] Agregar dependencia `nimbus-jose-jwt` al build.gradle
+- [x] Crear `VideoConferenceAccessService` (interfaz + implementación)
+- [x] Crear DTO `VideoConferenceAccess` (domain, roomName, token, expiresAt)
+- [x] Implementar firma JWT con RSA (clave privada de JaaS)
+- [x] Configurar propiedades JaaS en application.yml (app-id, kid, ruta clave privada)
+- [x] Crear endpoint `POST /api/meetings/{meetingId}/access`
+- [x] Validar que el usuario autenticado puede acceder a la reunión
 
 ## Claims del JWT Jitsi
 ```json

@@ -29,6 +29,7 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
+import java.time.LocalDateTime;
 
 @Service
 public class VideoConferenceAccessService {
@@ -82,12 +83,14 @@ public class VideoConferenceAccessService {
         Meeting meeting = meetingRepository.findById(meetingId)
                 .orElseThrow(() -> new RuntimeException("Reunión no encontrada"));
 
+        if (meeting.getDateTime().isBefore(LocalDateTime.now())) {
+            throw new RuntimeException("La reunión ya finalizó");
+        }
+        
         User user = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
+                    .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         Instant now = Instant.now();
         Instant expiration = now.plusSeconds((long) ttlMinutes * 60);
-
         String token = buildJitsiJwt(meeting.getJitsiRoomId(), user, now, expiration);
 
         return new VideoConferenceAccess(
