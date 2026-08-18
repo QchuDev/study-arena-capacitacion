@@ -13,3 +13,10 @@ spring:
 jwt:
   secret: R4xeNO6r1jq05OaFX3ax17b6pEmunt2MnMogRaUj94s=
   expiration-ms: 86400000
+
+jaas:
+  app-id: ${JAAS_APP_ID:your-app-id}
+  kid: ${JAAS_KID:your-key-id}
+  private-key-path: ${JAAS_PRIVATE_KEY_PATH:classpath:jaas.pk}
+  ttl-minutes: ${JAAS_TTL_MINUTES:60}
+
