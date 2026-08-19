@@ -7,13 +7,13 @@ Centralizar toda la configuración de la app (DB, JWT, JaaS) en application.yml
 con soporte de variables de entorno para no hardcodear secretos.
 
 ## Tareas
-- [ ] Convertir `application.properties` → `application.yml`
-- [ ] Configurar datasource PostgreSQL (url, user, password desde env vars)
-- [ ] Configurar JPA (ddl-auto, show-sql, dialect)
-- [ ] Configurar propiedades JWT app (secret, expiration)
-- [ ] Configurar propiedades JaaS (app-id, kid, private-key-path)
-- [ ] Crear `.env.example` con las variables requeridas
-- [ ] Agregar `.env` al .gitignore
+- [x] Convertir `application.properties` → `application.yml`
+- [x] Configurar datasource PostgreSQL (url, user, password desde env vars)
+- [x] Configurar JPA (ddl-auto, show-sql, dialect)
+- [x] Configurar propiedades JWT app (secret, expiration)
+- [x] Configurar propiedades JaaS (app-id, kid, private-key-path)
+- [x] Crear `.env.example` con las variables requeridas
+- [x] Agregar `.env` al .gitignore
 
 ## Dependencias
 - Ninguna (se puede hacer en paralelo con 001)
