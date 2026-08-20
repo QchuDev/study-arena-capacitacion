@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
+import edu.studyarena.training.exception.UserNotFoundException;
+import edu.studyarena.training.exception.MeetingNotFoundException;
+
 @Service
 public class MeetingService {
 
@@ -24,7 +27,7 @@ public class MeetingService {
 
     public MeetingResponse create(CreateMeetingRequest request, String ownerEmail) {
         User owner = userRepository.findByEmail(ownerEmail)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado: " + ownerEmail));
 
         String jitsiRoomId = UUID.randomUUID().toString();
 
@@ -49,7 +52,7 @@ public class MeetingService {
 
     public MeetingResponse findById(String id) {
         Meeting meeting = meetingRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Reunión no encontrada"));
+                .orElseThrow(() -> new MeetingNotFoundException("Reunión no encontrada: " + id));
         return toResponse(meeting);
     }
 

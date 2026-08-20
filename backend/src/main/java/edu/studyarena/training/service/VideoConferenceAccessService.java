@@ -31,6 +31,9 @@ import java.util.Map;
 import java.util.UUID;
 import java.time.LocalDateTime;
 
+import edu.studyarena.training.exception.MeetingNotFoundException;
+import edu.studyarena.training.exception.UserNotFoundException;
+
 @Service
 public class VideoConferenceAccessService {
 
@@ -80,25 +83,26 @@ public class VideoConferenceAccessService {
     }
 
     public VideoConferenceAccess generateAccess(String meetingId, String userEmail) {
-        Meeting meeting = meetingRepository.findById(meetingId)
-                .orElseThrow(() -> new RuntimeException("Reunión no encontrada"));
+      Meeting meeting = meetingRepository.findById(meetingId)
+          .orElseThrow(() -> new MeetingNotFoundException("Reunión no encontrada: " + meetingId));
 
-        if (meeting.getDateTime().isBefore(LocalDateTime.now())) {
-            throw new RuntimeException("La reunión ya finalizó");
-        }
-        
-        User user = userRepository.findByEmail(userEmail)
-                    .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        Instant now = Instant.now();
-        Instant expiration = now.plusSeconds((long) ttlMinutes * 60);
-        String token = buildJitsiJwt(meeting.getJitsiRoomId(), user, now, expiration);
+      if (meeting.getDateTime().isBefore(LocalDateTime.now())) {
+          throw new IllegalStateException("La reunión ya finalizó");
+      }
 
-        return new VideoConferenceAccess(
-                "8x8.vc",
-                appId + "/" + meeting.getJitsiRoomId(),
-                token,
-                expiration
-        );
+      User user = userRepository.findByEmail(userEmail)
+        .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado: " + userEmail));
+
+      Instant now = Instant.now();
+      Instant expiration = now.plusSeconds((long) ttlMinutes * 60);
+      String token = buildJitsiJwt(meeting.getJitsiRoomId(), user, now, expiration);
+
+      return new VideoConferenceAccess(
+              "8x8.vc",
+              appId + "/" + meeting.getJitsiRoomId(),
+              token,
+              expiration
+      );
     }
 
     private String buildJitsiJwt(String roomName, User user, Instant now, Instant expiration) {
